@@ -32,3 +32,10 @@ magick "$in" -colorspace sRGB -color-threshold "rgb(245,245,245)-rgb(255,255,255
     else printf("top_row=-1\nbottom_row=-1\n");
   }'
 ```
+
+## Crop an image since row start
+
+```bash
+magick page-362.png   -set option:rw 1236 -set option:rh 1648   -set option:ch "%[fx:ceil(w*rh/rw)]"   -set option:y  "%[fx:max(0,min(h-%[option:ch], $CROP_START))]"   -crop "%[w]x%[option:ch]+0+%[option:y]" +repage AAAout.png
+```
+
